@@ -1,4 +1,4 @@
-﻿namespace BlogSharp2023.MVC.Controllers
+﻿namespace BlogSharp2023.DAL
 {
     public interface IBlogPostDao
     {
