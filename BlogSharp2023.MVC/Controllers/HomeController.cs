@@ -6,11 +6,11 @@ namespace BlogSharp2023.MVC.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //beautify extension?
 
-        public HomeController(ILogger<HomeController> logger)
+
+        public HomeController(IBlogPostDao blogPostDao)
         {
-            _logger = logger;
         }
 
         public IActionResult Index()
