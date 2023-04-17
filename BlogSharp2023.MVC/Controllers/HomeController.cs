@@ -1,4 +1,5 @@
-﻿using BlogSharp2023.MVC.Models;
+﻿using BlogSharp2023.DAL;
+using BlogSharp2023.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -8,15 +9,17 @@ namespace BlogSharp2023.MVC.Controllers
     {
         //beautify extension?
 
+        IBlogPostDao _blogPostDao;
 
 
         public HomeController(IBlogPostDao blogPostDao)
         {
+            _blogPostDao = blogPostDao;
         }
 
         public IActionResult Index()
         {
-            return View();
+            return View(_blogPostDao.Get10NewestBlogPosts());
         }
 
         public IActionResult Privacy()
