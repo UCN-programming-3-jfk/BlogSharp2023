@@ -9,6 +9,7 @@ namespace BlogSharp2023.MVC.Controllers
         //beautify extension?
 
 
+
         public HomeController(IBlogPostDao blogPostDao)
         {
         }
