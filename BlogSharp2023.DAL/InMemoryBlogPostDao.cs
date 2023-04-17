@@ -8,7 +8,7 @@ namespace BlogSharp2023.DAL
 {
     public class InMemoryBlogPostDao : IBlogPostDao
     {
-        private List<BlogPost> _blogPosts = new List<BlogPost>();
+        private List<BlogPost> _blogPosts = new List<BlogPost>() { };
         public InMemoryBlogPostDao()
         {
             _blogPosts.Add(new BlogPost(1, DateTime.Now, "First Blog Post", "This is the first blog post", 1));
@@ -27,6 +27,13 @@ namespace BlogSharp2023.DAL
             _blogPosts.Add(new BlogPost(14, DateTime.Now, "Fourteenth Blog Post", "This is the fourteenth blog post", 1));
             _blogPosts.Add(new BlogPost(15, DateTime.Now, "Fifteenth Blog Post", "This is the fifteenth blog post", 1));
         }
+
+        public int AddBlogPost(BlogPost blogPost)
+        {
+            _blogPosts.Add(blogPost);
+            return 42;
+        }
+
         public IEnumerable<BlogPost> Get10NewestBlogPosts() => _blogPosts;
     }
 }

@@ -3,5 +3,6 @@
     public interface IBlogPostDao
     {
         IEnumerable<BlogPost> Get10NewestBlogPosts();
+        int AddBlogPost(BlogPost blogPost);
     }
 }
