@@ -18,14 +18,7 @@ namespace BlogSharp2023.DAL
             _blogPosts.Add(new BlogPost(5, DateTime.Now, "Fifth Blog Post", "This is the fifth blog post", 1));
             _blogPosts.Add(new BlogPost(6, DateTime.Now, "Sixth Blog Post", "This is the sixth blog post", 1));
             _blogPosts.Add(new BlogPost(7, DateTime.Now, "Seventh Blog Post", "This is the seventh blog post", 1));
-            _blogPosts.Add(new BlogPost(8, DateTime.Now, "Eighth Blog Post", "This is the eighth blog post", 1));
-            _blogPosts.Add(new BlogPost(9, DateTime.Now, "Ninth Blog Post", "This is the ninth blog post", 1));
-            _blogPosts.Add(new BlogPost(10, DateTime.Now, "Tenth Blog Post", "This is the tenth blog post", 1));
-            _blogPosts.Add(new BlogPost(11, DateTime.Now, "Eleventh Blog Post", "This is the eleventh blog post", 1));
-            _blogPosts.Add(new BlogPost(12, DateTime.Now, "Twelfth Blog Post", "This is the twelfth blog post", 1));
-            _blogPosts.Add(new BlogPost(13, DateTime.Now, "Thirteenth Blog Post", "This is the thirteenth blog post", 1));
-            _blogPosts.Add(new BlogPost(14, DateTime.Now, "Fourteenth Blog Post", "This is the fourteenth blog post", 1));
-            _blogPosts.Add(new BlogPost(15, DateTime.Now, "Fifteenth Blog Post", "This is the fifteenth blog post", 1));
+           
         }
 
         public int AddBlogPost(BlogPost blogPost)
@@ -34,6 +27,20 @@ namespace BlogSharp2023.DAL
             return 42;
         }
 
-        public IEnumerable<BlogPost> Get10NewestBlogPosts() => _blogPosts;
+        public IEnumerable<BlogPost> Get10NewestBlogPosts() => _blogPosts.Take(10);
+
+        public IEnumerable<BlogPost> GetAll() => _blogPosts;
+
+        public BlogPost? GetById(int id) => _blogPosts.FirstOrDefault(b => b.Id == id);
+
+        public bool Update(BlogPost blogPost)
+        {
+            var postToEdit = GetById(blogPost.Id);
+            if(postToEdit == null) { return false; }
+
+            postToEdit.Title = blogPost.Title;
+            postToEdit.Content = blogPost.Content;
+            return true;
+        }
     }
 }

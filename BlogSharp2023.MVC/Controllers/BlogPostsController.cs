@@ -17,7 +17,7 @@ namespace BlogSharp2023.MVC.Controllers
         // GET: BlogPostsController
         public ActionResult Index()
         {
-            return View();
+            return View(_blogPostDao.GetAll());
         }
 
         // GET: BlogPostsController/Details/5
@@ -35,11 +35,11 @@ namespace BlogSharp2023.MVC.Controllers
         // POST: BlogPostsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(BlogPost newPost)
+        public ActionResult Create(IFormCollection collection )
         {
             try
             {
-                _blogPostDao.AddBlogPost(newPost);
+                //_blogPostDao.AddBlogPost(newPost);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -48,19 +48,22 @@ namespace BlogSharp2023.MVC.Controllers
             }
         }
 
-        // GET: BlogPostsController/Edit/5
+        // GET: BlogPosts/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var blogPost = _blogPostDao.GetById(id);
+            if (blogPost == null) {return NotFound();}
+            return View(blogPost);
         }
 
         // POST: BlogPostsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, BlogPost blogPost)
         {
             try
             {
+                if (!_blogPostDao.Update(blogPost)) { return NotFound(); }
                 return RedirectToAction(nameof(Index));
             }
             catch
