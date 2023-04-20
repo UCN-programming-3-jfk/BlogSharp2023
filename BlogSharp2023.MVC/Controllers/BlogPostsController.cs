@@ -12,27 +12,22 @@ public class BlogPostsController : Controller
         _blogPostDao = blogPostDao;
     }
 
-    // GET: BlogPostsController
-    public ActionResult Index()
-    {
-        return View(_blogPostDao.GetAll());
-    }
+    // GET: BlogPosts
+    public ActionResult Index() => View(_blogPostDao.GetAll());
 
-    // GET: BlogPostsController/Details/5
+    // GET: BlogPosts/Details/5
     public ActionResult Details(int id)
     {
+        //does this code look like edit and delete? 😉
         var blogPost = _blogPostDao.GetById(id);
         if (blogPost == null) { return NotFound(); }
         return View(blogPost);
     }
 
-    // GET: BlogPostsController/Create
-    public ActionResult Create()
-    {
-        return View();
-    }
+    // GET: BlogPosts/Create
+    public ActionResult Create() => View();
 
-    // POST: BlogPostsController/Create
+    // POST: BlogPosts/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
     public ActionResult Create(BlogPost newBlogPost)
@@ -56,7 +51,7 @@ public class BlogPostsController : Controller
         return View(blogPost);
     }
 
-    // POST: BlogPostsController/Edit/5
+    // POST: BlogPosts/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
     public ActionResult Edit(int id, BlogPost blogPost)
@@ -72,7 +67,7 @@ public class BlogPostsController : Controller
         }
     }
 
-    // GET: BlogPostsController/Delete/5
+    // GET: BlogPosts/Delete/5
     public ActionResult Delete(int id)
     {
         var blogPost = _blogPostDao.GetById(id);
@@ -80,7 +75,7 @@ public class BlogPostsController : Controller
         return View(blogPost);
     }
 
-    // POST: BlogPostsController/Delete/5
+    // POST: BlogPosts/Delete/5
     [HttpPost]
     [ValidateAntiForgeryToken]
     public ActionResult Delete(int id, IFormCollection collection)

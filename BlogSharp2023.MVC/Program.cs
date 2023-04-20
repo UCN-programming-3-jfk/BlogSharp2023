@@ -12,7 +12,8 @@ namespace BlogSharp2023.MVC
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddSingleton<IBlogPostDao>(new InMemoryBlogPostDao());
-            
+            builder.Services.AddSingleton<IAuthorDao>(new InMemoryAuthorDao());
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -27,7 +28,6 @@ namespace BlogSharp2023.MVC
             app.UseStaticFiles();
 
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.MapControllerRoute(

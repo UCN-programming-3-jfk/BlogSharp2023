@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BlogSharp2023.DAL.Model;
+﻿using BlogSharp2023.DAL.Model;
 
 namespace BlogSharp2023.DAL
 {
@@ -14,21 +9,19 @@ namespace BlogSharp2023.DAL
         public InMemoryBlogPostDao()
         {
             Add(new BlogPost("First Blog Post", "This is the first blog post", 1));
-            Add(new BlogPost("Second Blog Post", "This is the second blog post", 1));
-            Add(new BlogPost("Third Blog Post", "This is the third blog post", 1));
-            Add(new BlogPost("Fourth Blog Post", "This is the fourth blog post", 1));
-            Add(new BlogPost("Fifth Blog Post", "This is the fifth blog post", 1));
-            Add(new BlogPost("Sixth Blog Post", "This is the sixth blog post", 1));
-            Add(new BlogPost("Seventh Blog Post", "This is the seventh blog post", 1));
+            Add(new BlogPost("Second Blog Post", "This is the second blog post", 2));
+            Add(new BlogPost("Third Blog Post", "This is the third blog post", 2));
+            Add(new BlogPost("Fourth Blog Post", "This is the fourth blog post", 3));
+            Add(new BlogPost("Fifth Blog Post", "This is the fifth blog post", 3));
+            Add(new BlogPost("Sixth Blog Post", "This is the sixth blog post", 3));
+            Add(new BlogPost("Seventh Blog Post", "This is the seventh blog post", 4));
         }
-
         public int Add(BlogPost blogPost)
         {
             blogPost.Id = GetNextId();
             _blogPosts.Add(blogPost);
             return blogPost.Id;
         }
-
         public bool Delete(int id)
         {
             return _blogPosts.RemoveAll(post => post.Id == id) > 0;
@@ -49,10 +42,6 @@ namespace BlogSharp2023.DAL
             postToEdit.Content = blogPost.Content;
             return true;
         }
-
-        private int GetNextId()
-        {
-            return _nextId++;
-        }
+        private int GetNextId() => _nextId++;
     }
 }
