@@ -28,7 +28,7 @@ public class InMemoryAuthorDao : IAuthorDao
 
     public Author? GetById(int id) => _authors.FirstOrDefault(a => a.Id == id);
 
-    public Author? Login(string username, string password) => _authors.FirstOrDefault(a => a.Email == username && a.Password == password);
+    public Author? Login(string email, string password) => _authors.FirstOrDefault(a => a.Email == email && a.Password == password);
 
     public bool Update(Author author)
     {

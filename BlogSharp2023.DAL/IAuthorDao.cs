@@ -3,7 +3,7 @@
 namespace BlogSharp2023.DAL;
 public interface IAuthorDao
 {
-    Author? Login(string username, string password);
+    Author? Login(string email, string password);
     Author? GetById(int id);
     int Add(Author author);
     bool Update(Author author);
