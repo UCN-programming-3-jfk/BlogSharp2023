@@ -1,13 +1,12 @@
-﻿namespace BlogSharp2023.DAL
+﻿using BlogSharp2023.DAL.Model;
+
+namespace BlogSharp2023.DAL;
+public interface IBlogPostDao
 {
-    public interface IBlogPostDao
-    {
-        IEnumerable<BlogPost> Get10NewestBlogPosts();
-        int AddBlogPost(BlogPost blogPost);
-        IEnumerable<BlogPost> GetAll();
-
-        BlogPost? GetById(int id);
-        bool Update(BlogPost blogPost);
-
-    }
+    IEnumerable<BlogPost> Get10NewestBlogPosts();
+    IEnumerable<BlogPost> GetAll();
+    BlogPost? GetById(int id);
+    int Add(BlogPost blogPost);
+    bool Update(BlogPost blogPost);
+    bool Delete(int id);
 }

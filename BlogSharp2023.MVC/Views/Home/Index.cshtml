@@ -1,17 +1,18 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "10 latest blogposts on BlogSharp";
 }
 
 <div class="text-center">
     <h1 class="display-4">10 latest blog posts</h1>
-   
+
     @foreach (var post in Model)
     {
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">@post.Title</h5>
-                <p class="card-text">@post.Content</p>
-                <a href="@Url.Action("Details", "BlogPosts", new { id = post.Id })" class="btn btn-primary">Read more</a>
+                <a href="@Url.Action("Details", "BlogPosts", new { id = post.Id })"><h5 class="card-title">@post.Title</h5></a>
+                <p class="card-text">
+                    @post.Content
+                </p>
             </div>
         </div>
     }
