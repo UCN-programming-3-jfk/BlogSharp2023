@@ -1,5 +1,6 @@
 ﻿using BlogSharp2023.DAL;
 using BlogSharp2023.DAL.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogSharp2023.MVC.Controllers;
@@ -19,12 +20,19 @@ public class BlogPostsController : Controller
     public ActionResult Details(int id)
     {
         //does this code look like edit and delete? 😉
+        return LoadAndShow(id);
+    }
+
+    private ActionResult LoadAndShow(int id)
+    {
         var blogPost = _blogPostDao.GetById(id);
         if (blogPost == null) { return NotFound(); }
         return View(blogPost);
     }
 
     // GET: BlogPosts/Create
+
+    [Authorize]
     public ActionResult Create() => View();
 
     // POST: BlogPosts/Create
@@ -46,9 +54,7 @@ public class BlogPostsController : Controller
     // GET: BlogPosts/Edit/5
     public ActionResult Edit(int id)
     {
-        var blogPost = _blogPostDao.GetById(id);
-        if (blogPost == null) { return NotFound(); }
-        return View(blogPost);
+        return LoadAndShow(id);
     }
 
     // POST: BlogPosts/Edit/5
@@ -70,9 +76,7 @@ public class BlogPostsController : Controller
     // GET: BlogPosts/Delete/5
     public ActionResult Delete(int id)
     {
-        var blogPost = _blogPostDao.GetById(id);
-        if (blogPost == null) { return NotFound(); }
-        return View(blogPost);
+         return LoadAndShow(id);
     }
 
     // POST: BlogPosts/Delete/5

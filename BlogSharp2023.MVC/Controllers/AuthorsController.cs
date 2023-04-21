@@ -18,6 +18,7 @@ public class AuthorsController : Controller
     {
         try
         {
+            if(!ModelState.IsValid) { throw new InvalidDataException(); }
             _authorDao.Add(author);
             return RedirectToAction("Index", "Home");
         }

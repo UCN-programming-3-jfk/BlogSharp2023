@@ -1,4 +1,5 @@
 using BlogSharp2023.DAL;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace BlogSharp2023.MVC
 {
@@ -10,6 +11,9 @@ namespace BlogSharp2023.MVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            //add authentication using cookies
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+       .AddCookie();
 
             builder.Services.AddSingleton<IBlogPostDao>(new InMemoryBlogPostDao());
             builder.Services.AddSingleton<IAuthorDao>(new InMemoryAuthorDao());
@@ -28,6 +32,7 @@ namespace BlogSharp2023.MVC
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
