@@ -1,8 +1,11 @@
 ﻿using BlogSharp2023.DAL;
 using BlogSharp2023.DAL.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogSharp2023.MVC.Controllers;
+
+[Authorize]
 public class AuthorsController : Controller
 {
     IAuthorDao _authorDao;

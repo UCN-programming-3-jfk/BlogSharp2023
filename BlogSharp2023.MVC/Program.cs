@@ -15,8 +15,9 @@ namespace BlogSharp2023.MVC
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
        .AddCookie();
 
-            builder.Services.AddSingleton<IBlogPostDao>(new InMemoryBlogPostDao());
-            builder.Services.AddSingleton<IAuthorDao>(new InMemoryAuthorDao());
+            builder.Services.AddSingleton<IBlogPostDao, InMemoryBlogPostDao>();
+            builder.Services.AddSingleton<IAuthorDao, InMemoryAuthorDao>();
+            
 
             var app = builder.Build();
 
