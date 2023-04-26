@@ -1,5 +1,6 @@
 using BlogSharp2023.APICLIENT;
 using BlogSharp2023.DAL;
+using BlogSharp2023.DAL.Memory;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace BlogSharp2023.MVC

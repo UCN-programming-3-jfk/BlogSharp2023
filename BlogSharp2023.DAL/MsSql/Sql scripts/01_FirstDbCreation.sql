@@ -1,0 +1,40 @@
+﻿USE [master]
+GO
+/****** Object:  Database [BlogSharp2023]    Script Date: 26-04-2023 12:44:32 ******/
+CREATE DATABASE [BlogSharp2023]
+GO
+ ALTER DATABASE [BlogSharp2023] SET QUERY_STORE = OFF
+GO
+USE [BlogSharp2023]
+GO
+
+CREATE TABLE [dbo].[Author](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Email] [nvarchar](50) NOT NULL,
+	[PasswordWithHash] [nvarchar](60) NOT NULL,
+	[BlogTitle] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_Author] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[BlogPost](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](50) NOT NULL,
+	[Content] [nvarchar](max) NOT NULL,
+	[CreationDate] [datetime2](7) NOT NULL,
+	[Author_Id_FK] [int] NOT NULL,
+ CONSTRAINT [PK_BlogPost] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[BlogPost]  WITH CHECK ADD  CONSTRAINT [FK_BlogPost_Author] FOREIGN KEY([Author_Id_FK])
+REFERENCES [dbo].[Author] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[BlogPost] CHECK CONSTRAINT [FK_BlogPost_Author]
+GO

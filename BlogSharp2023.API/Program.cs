@@ -1,3 +1,6 @@
+using BlogSharp2023.DAL;
+using BlogSharp2023.DAL.MsSql;
+
 namespace BlogSharp2023.API
 {
     public class Program
@@ -5,7 +8,7 @@ namespace BlogSharp2023.API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            builder.Services.AddScoped<IAuthorDao>((_) => new MsSqlAuthorDao("Data Source=.;Initial Catalog=BlogSharp2023;Integrated Security=True"));
             // Add services to the container.
 
             builder.Services.AddControllers();
@@ -25,7 +28,6 @@ namespace BlogSharp2023.API
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

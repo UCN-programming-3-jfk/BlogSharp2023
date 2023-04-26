@@ -1,6 +1,6 @@
 ﻿using BlogSharp2023.DAL.Model;
 
-namespace BlogSharp2023.DAL;
+namespace BlogSharp2023.DAL.Memory;
 public class InMemoryAuthorDao : IAuthorDao
 {
     private List<Author> _authors = new List<Author>();

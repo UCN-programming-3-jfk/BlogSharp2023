@@ -1,6 +1,6 @@
 ﻿using BlogSharp2023.DAL.Model;
 
-namespace BlogSharp2023.DAL
+namespace BlogSharp2023.DAL.Memory
 {
     public class InMemoryBlogPostDao : IBlogPostDao
     {
@@ -36,7 +36,7 @@ namespace BlogSharp2023.DAL
         public bool Update(BlogPost blogPost)
         {
             var postToEdit = GetById(blogPost.Id);
-            if(postToEdit == null) { return false; }
+            if (postToEdit == null) { return false; }
 
             postToEdit.Title = blogPost.Title;
             postToEdit.Content = blogPost.Content;
