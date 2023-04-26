@@ -74,11 +74,12 @@ public class BlogPostsController : Controller
     }
 
     // GET: BlogPosts/Delete/5
+    [Authorize]
     public ActionResult Delete(int id)
     {
          return LoadAndShow(id);
     }
-
+    [Authorize]
     // POST: BlogPosts/Delete/5
     [HttpPost]
     [ValidateAntiForgeryToken]

@@ -1,4 +1,5 @@
 ﻿using BlogSharp2023.API.Dtos;
+using BlogSharp2023.DAL.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,9 +11,9 @@ namespace BlogSharp2023.API.Controllers
     {
 
         [HttpPost]
-        public ActionResult<AuthorDto?> Login(LoginDto loginDto)
+        public ActionResult<Author?> Login(Login login)
         {
-            return new AuthorDto();
+            return Ok(new Author());
         }
 
        

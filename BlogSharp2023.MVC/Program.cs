@@ -1,3 +1,4 @@
+using BlogSharp2023.APICLIENT;
 using BlogSharp2023.DAL;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
@@ -16,8 +17,9 @@ namespace BlogSharp2023.MVC
        .AddCookie();
 
             builder.Services.AddSingleton<IBlogPostDao, InMemoryBlogPostDao>();
-            builder.Services.AddSingleton<IAuthorDao, InMemoryAuthorDao>();
-            
+            //builder.Services.AddSingleton<IAuthorDao, InMemoryAuthorDao>();
+            builder.Services.AddSingleton<IAuthorDao>(new AuthorApiClient("https://localhost:7114/api/Authors"));
+
 
             var app = builder.Build();
 

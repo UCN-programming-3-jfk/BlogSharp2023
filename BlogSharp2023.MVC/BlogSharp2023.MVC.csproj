@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BlogSharp2023.APICLIENT\BlogSharp2023.APICLIENT.csproj" />
     <ProjectReference Include="..\BlogSharp2023.DAL\BlogSharp2023.DAL.csproj" />
   </ItemGroup>
 
